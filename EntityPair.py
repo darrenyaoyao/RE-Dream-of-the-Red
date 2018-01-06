@@ -5,6 +5,10 @@ class EntityPair():
         self.e2 = entity2
         self.relation = relation
         self.sentences = []
+        self.poses = []
 
     def add_sentence(self, sentence):
         self.sentences.append(sentence)
+
+    def add_pos(self, pos):
+        self.poses.append(pos)

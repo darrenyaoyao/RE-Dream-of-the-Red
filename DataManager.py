@@ -3,6 +3,7 @@ from EntityPair import EntityPair
 class DataManager():
     def __init__(self):
         self.sentences, self.parses = self.read_sentences()
+        self.POS_id = self.POS_dic(self.parses)
         self.training_entitypairs, self.relations = self.get_training_entitypairs()
         self.testing_entitypairs = self.get_testing_entitypairs()
 
@@ -51,3 +52,13 @@ class DataManager():
                 line = line.decode('utf-8').split()
                 entitypairs.append(EntityPair(line[0], line[1], line[2], line[3]))
         return entitypairs
+
+    def POS_dic(self, parses):
+        idx = 0
+        pos_dic = {}
+        for parse in parses:
+            for POS in parse:
+                if POS not in pos_dic:
+                    pos_dic[POS] = idx
+                    idx += 1
+        return pos_dic
